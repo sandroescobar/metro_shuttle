@@ -11,14 +11,25 @@ app.use(express.static(publicDir));
 
 const pages = {
   '/': 'index.html',
-  '/Bookings': 'bookings.html',
   '/bookings': 'bookings.html',
-  '/Fleet': 'fleet.html',
   '/fleet': 'fleet.html',
-  '/Contact': 'contact.html',
   '/contact': 'contact.html',
-  '/Contact-Metro-Shuttle-Services': 'contact.html'
+  '/miami-cruise-port-shuttle': 'miami-cruise-port-shuttle.html',
+  '/fll-to-miami-cruise-port-shuttle': 'fll-to-miami-cruise-port-shuttle.html',
+  '/miami-cruise-port-hotels-shuttle-guide': 'miami-cruise-port-hotels-shuttle-guide.html'
 };
+
+const redirects = {
+  '/Bookings': '/bookings',
+  '/Fleet': '/fleet',
+  '/Contact': '/contact',
+  '/Contact-Metro-Shuttle-Services': '/contact'
+};
+
+app.use((req, res, next) => {
+  if (redirects[req.path]) return res.redirect(301, redirects[req.path]);
+  next();
+});
 
 for (const [route, file] of Object.entries(pages)) {
   app.get(route, (_req, res) => res.sendFile(path.join(publicDir, file)));
