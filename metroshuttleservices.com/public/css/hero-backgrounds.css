@@ -1,0 +1,30 @@
+/* ============================================================
+   PER-PAGE HERO BACKGROUNDS
+   Paste this into main.css directly AFTER the existing
+   .page-hero rule (around line 300, after the .page-hero
+   background declaration).
+
+   The base .page-hero rule stays as-is and acts as the
+   fallback for /bookings, /fleet, /contact.
+
+   Add class="page-hero page-hero--cruise" (etc) to the
+   <section> on the matching page.
+   ============================================================ */
+
+.page-hero--cruise {
+  background:
+    linear-gradient(90deg, rgba(7, 26, 68, 0.92), rgba(7, 26, 68, 0.72)),
+    url('/images/hero-portmiami.jpg') center/cover no-repeat;
+}
+
+.page-hero--fll {
+  background:
+    linear-gradient(90deg, rgba(7, 26, 68, 0.92), rgba(7, 26, 68, 0.72)),
+    url('/images/hero-fll.jpg') center/cover no-repeat;
+}
+
+.page-hero--hotels {
+  background:
+    linear-gradient(90deg, rgba(7, 26, 68, 0.92), rgba(7, 26, 68, 0.72)),
+    url('/images/hero-hotel.jpg') center/cover no-repeat;
+}

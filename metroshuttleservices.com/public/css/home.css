@@ -1,0 +1,536 @@
+/* ============================================================
+   home.css — homepage only. Loaded AFTER main.css.
+   Uses its own class names (.masthead, .routes, .offer, .band,
+   .feature) so nothing here fights main.css specificity.
+
+   Once this is live, .hero and .trust-strip in main.css are
+   no longer used by any page and can be deleted.
+   ============================================================ */
+
+:root {
+  --navy: #071a44;
+  --blue: #0f2f72;
+  --amber: #f59e0b;
+  --amber-dark: #d97706;
+  --sea: #edf3f4;
+  --ink: #142033;
+  --slate: #5b6b82;
+}
+
+/* Placeholder safety: image containers keep a navy field behind
+   them, so a missing photo reads as a colour block, not a broken
+   icon. Safe to leave in permanently. */
+.img-field {
+  background: linear-gradient(135deg, #0f2f72, #071a44);
+}
+
+/* ---------- Masthead: copy left, image bleeding off the right ---------- */
+
+.masthead {
+  position: relative;
+  background: var(--navy);
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  padding: 4.5rem 0 6.5rem;
+  overflow: hidden;
+}
+
+.masthead-media {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 48%;
+  z-index: 0;
+}
+
+/* The image is masked rather than tinted. A navy overlay across
+   half the photo reads as haze; masking fades the image itself
+   over a short band so the rest stays fully sharp. */
+.masthead-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 8%, #000 18%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,0.6) 8%, #000 18%);
+}
+
+.masthead-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  color: #fff;
+}
+
+.masthead-copy {
+  max-width: 54%;
+}
+
+.masthead h1 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 5.2vw, 4.9rem);
+  line-height: 0.94;
+  letter-spacing: -0.015em;
+  max-width: 13ch;
+  margin-bottom: 1.4rem;
+  text-wrap: balance;
+}
+
+.masthead-lede {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 42ch;
+  color: #dbe6ff;
+  margin-bottom: 2rem;
+}
+
+.masthead-actions {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- Route rail ---------- */
+
+.routes {
+  position: relative;
+  z-index: 3;
+  max-width: 1180px;
+  margin: -4.5rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.routes-inner {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 24px 60px rgba(7, 26, 68, 0.22);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.route {
+  padding: 1.6rem 1.4rem;
+  border-right: 1px solid #e6ecf2;
+  display: block;
+  transition: background 0.18s ease;
+}
+
+.route:last-child { border-right: 0; }
+.route:hover,
+.route:focus-visible { background: var(--sea); }
+
+.route-pair {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+/* The line between origin and destination — the one piece of
+   ornament on the page, and it encodes the trip. */
+.route-line {
+  flex: 1;
+  height: 2px;
+  background: var(--amber);
+  position: relative;
+  min-width: 18px;
+}
+
+.route-line::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.route-note {
+  font-size: 0.9rem;
+  color: var(--slate);
+  display: block;
+}
+
+.route-price {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--amber-dark);
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Shared section rhythm ---------- */
+
+.home-section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+}
+
+.home-head {
+  max-width: 40ch;
+  margin-bottom: 3rem;
+}
+
+.home-head h2 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+  line-height: 1.02;
+  color: var(--navy);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.9rem;
+}
+
+.home-head p {
+  color: var(--slate);
+  font-size: 1.06rem;
+  line-height: 1.65;
+}
+
+/* ---------- Service cards: tall, photographic, staggered ---------- */
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.offer {
+  position: relative;
+  display: block;
+  border-radius: 3px;
+  overflow: hidden;
+  color: #fff;
+  min-height: 420px;
+}
+
+/* Middle card sits lower — breaks the flat grid line without
+   any decoration. */
+.offer-grid > .offer:nth-child(2) { margin-top: 3rem; }
+
+.offer img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 26, 68, 0.9) 12%, rgba(7, 26, 68, 0.15) 70%);
+}
+
+.offer-body {
+  position: relative;
+  z-index: 1;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 420px;
+}
+
+.offer-body h3 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: 1.9rem;
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+}
+
+.offer-body p {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: #d7e2f5;
+}
+
+/* ---------- Full-bleed band ---------- */
+
+.band {
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.band-media { position: absolute; inset: 0; }
+
+.band-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.band-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(7, 26, 68, 0.92) 0%, rgba(7, 26, 68, 0.7) 50%, rgba(7, 26, 68, 0.35) 100%);
+}
+
+.band-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  color: #fff;
+}
+
+.band-inner h2 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  line-height: 1.02;
+  max-width: 18ch;
+  margin-bottom: 1rem;
+}
+
+.band-inner p {
+  max-width: 52ch;
+  color: #dbe6ff;
+  line-height: 1.65;
+  margin-bottom: 1.75rem;
+}
+
+/* ---------- Feature: image bleeds past the container ---------- */
+
+.feature {
+  position: relative;
+  background: var(--sea);
+  overflow: hidden;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+}
+
+/* Image fills the section top to bottom and runs off the left
+   edge of the viewport. Flush on three sides, so the crop reads
+   as intentional instead of as a mistake. Mirrored from the
+   masthead so the two don't repeat the same arrangement. */
+.feature-media {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 46%;
+  z-index: 0;
+}
+
+/* Copy centres itself in the space left over beside the image
+   rather than sitting against a container edge, so the section
+   stays balanced on wide screens. */
+.feature-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 5rem 3rem 5rem calc(46% + 4rem);
+}
+
+.feature-copy {
+  max-width: 46ch;
+  margin: 0 auto;
+}
+
+.feature-copy h2 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+  line-height: 1.02;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+
+.feature-copy p {
+  color: var(--slate);
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  max-width: 52ch;
+}
+
+.feature-list-plain {
+  list-style: none;
+  margin: 1.5rem 0 2rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.feature-list-plain li {
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--ink);
+}
+
+.feature-list-plain li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 10px;
+  height: 2px;
+  background: var(--amber);
+}
+
+.feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Reading links ---------- */
+
+.reads {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid #dfe6ee;
+}
+
+.read {
+  display: block;
+  padding: 1.9rem 1.6rem 1.9rem 0;
+  border-bottom: 1px solid #dfe6ee;
+}
+
+.read h3 {
+  font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 600;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  color: var(--blue);
+  margin-bottom: 0.4rem;
+}
+
+.read p {
+  color: var(--slate);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.read:hover h3,
+.read:focus-visible h3 { color: var(--amber-dark); }
+
+/* ---------- Buttons ---------- */
+
+.btn-amber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--amber);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 1.7rem;
+  border-radius: 3px;
+  transition: background 0.18s ease;
+}
+
+.btn-amber:hover { background: var(--amber-dark); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem 1.7rem;
+  border-radius: 3px;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- Accessibility ---------- */
+
+a:focus-visible,
+.route:focus-visible,
+.offer:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 900px) {
+  .masthead {
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 3rem 0 5rem;
+  }
+  .masthead-copy { max-width: 100%; }
+  .masthead-media {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    margin-top: 2.5rem;
+  }
+  /* No mask when stacked. The desktop fade exists to hide the
+     vertical seam beside the copy; here there is no seam, so the
+     photo shows edge to edge. */
+  .masthead-media img {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .routes { margin-top: -2rem; }
+  .routes-inner { grid-template-columns: repeat(2, 1fr); }
+  .route:nth-child(2) { border-right: 0; }
+  .route:nth-child(1), .route:nth-child(2) { border-bottom: 1px solid #e6ecf2; }
+  .offer-grid { grid-template-columns: 1fr; }
+  .offer-grid > .offer:nth-child(2) { margin-top: 0; }
+  .offer, .offer-body { min-height: 340px; }
+  .feature {
+    min-height: 0;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .feature-inner { padding: 3.5rem 1.5rem 0; }
+  .feature-copy { margin: 0; }
+  .feature-copy { max-width: 100%; }
+  .feature-media {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    margin-top: 2.5rem;
+  }
+  .reads { grid-template-columns: 1fr; }
+  .read { padding-right: 0; }
+  .home-section { padding: 4rem 1.5rem; }
+}
+
+@media (max-width: 520px) {
+  .routes-inner { grid-template-columns: 1fr; }
+  .route { border-right: 0; border-bottom: 1px solid #e6ecf2; }
+  .route:last-child { border-bottom: 0; }
+  .masthead-actions .btn-amber,
+  .masthead-actions .btn-ghost { width: 100%; }
+}

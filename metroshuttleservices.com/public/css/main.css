@@ -194,8 +194,7 @@ img {
 }
 
 .section-heading h2,
-.page-hero h1,
-.hero h1 {
+.page-hero h1 {
   color: var(--blue-dark);
   line-height: 1.05;
   font-weight: 950;
@@ -211,79 +210,7 @@ img {
   font-size: 1.06rem;
 }
 
-/* HOME */
-
-.hero {
-  min-height: 660px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  padding: 6rem 1.5rem;
-  color: var(--white);
-  background:
-    linear-gradient(90deg, rgba(7, 26, 68, 0.92), rgba(7, 26, 68, 0.65), rgba(7, 26, 68, 0.25)),
-    url('/images/hero_bg.png') center/cover no-repeat;
-}
-
-.hero-content {
-  width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-}
-
-.hero-card {
-  max-width: 720px;
-}
-
-.hero h1 {
-  color: var(--white);
-  font-size: clamp(2.7rem, 6vw, 5.4rem);
-  margin-bottom: 1.25rem;
-  text-transform: uppercase;
-}
-
-.hero p {
-  color: #e5edff;
-  font-size: 1.18rem;
-  max-width: 650px;
-  margin-bottom: 1.75rem;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.trust-strip {
-  max-width: 1180px;
-  margin: -3rem auto 0;
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  padding: 0 1.5rem;
-}
-
-.trust-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 1.25rem;
-  box-shadow: var(--shadow);
-}
-
-.trust-card strong {
-  color: var(--blue);
-  display: block;
-  font-size: 1.05rem;
-}
-
-.trust-card span {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
+/* CONTENT GRIDS */
 
 .services-grid,
 .fleet-grid,
@@ -414,6 +341,27 @@ img {
     url('/images/cruise_ship.png') center/cover no-repeat;
 }
 
+/* Per-page hero imagery. Base .page-hero above is the fallback
+   for /bookings, /fleet and /contact. */
+
+.page-hero--cruise {
+  background:
+    linear-gradient(90deg, rgba(7, 26, 68, 0.92), rgba(7, 26, 68, 0.72)),
+    url('/images/hero-portmiami.jpg') center/cover no-repeat;
+}
+
+.page-hero--fll {
+  background:
+    linear-gradient(90deg, rgba(7, 26, 68, 0.92), rgba(7, 26, 68, 0.72)),
+    url('/images/hero-fll.jpg') center/cover no-repeat;
+}
+
+.page-hero--hotels {
+  background:
+    linear-gradient(90deg, rgba(7, 26, 68, 0.92), rgba(7, 26, 68, 0.72)),
+    url('/images/hero-hotel.jpg') center/cover no-repeat;
+}
+
 .page-hero-content {
   max-width: 960px;
   margin: 0 auto;
@@ -542,6 +490,64 @@ img {
   gap: 1.5rem;
 }
 
+/* RATES TABLE */
+
+.rate-table-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.rate-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+.rate-table th,
+.rate-table td {
+  padding: 1.1rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.rate-table thead th {
+  color: var(--blue-dark);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 2px solid var(--blue-dark);
+}
+
+.rate-table tbody th {
+  color: var(--blue);
+  font-size: 1.02rem;
+  font-weight: 800;
+}
+
+.rate-table td {
+  color: var(--text);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.rate-table tbody tr:hover {
+  background: var(--light);
+}
+
+.rate-note {
+  max-width: 1180px;
+  margin: 1.5rem auto 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 520px) {
+  .rate-table th,
+  .rate-table td { padding: 0.85rem 0.7rem; font-size: 0.95rem; }
+}
+
 /* FOOTER */
 
 footer {
@@ -602,7 +608,6 @@ footer li {
     gap: 1rem;
   }
 
-  .trust-strip,
   .services-grid,
   .steps-grid,
   .split-inner,
@@ -614,11 +619,6 @@ footer li {
 
   .fleet-grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: auto;
-    padding: 4.5rem 1.5rem;
   }
 }
 
@@ -639,7 +639,6 @@ footer li {
     font-size: 0.92rem;
   }
 
-  .hero-actions .btn,
   .booking-preview .btn {
     width: 100%;
   }
